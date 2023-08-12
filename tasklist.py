@@ -1,7 +1,10 @@
-class TaskLists:
+class TaskList:
     def __init__(self, tasklist_name):
         self.tasklist_name = tasklist_name
         self.lst = []
+
+    def get_name(self):
+        return self.tasklist_name
 
     def add_task(self, *task):
         self.lst.extend(task)

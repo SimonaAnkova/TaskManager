@@ -12,7 +12,7 @@ class Action:
         action = input("Make a decision: ")
 
         if action == "Make new tasklist":
-            new_list = TaskLists(input("Enter your tasklist name: "))
+            new_list = TaskList(input("Enter your tasklist name: "))
             tasklists.append(new_list)
 
         elif action == "Check your lists":

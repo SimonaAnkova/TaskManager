@@ -1,14 +1,50 @@
 import tkinter as tk
 from tkinter import messagebox
 from action import *
+from tasklist import *
 
 window = tk.Tk()
 window.geometry("700x400")
 
-def display_weather():
-    city = user_input.get()
-    output = API_Manager.get_current_weather(city)
-    output_label.config(text=output)
+tasklists = []
+
+def openNewWindow():
+    # Toplevel object which will
+    # be treated as a new window
+    newWindow = tk.Toplevel(window)
+
+    # sets the title of the
+    # Toplevel widget
+    newWindow.title("New Window")
+
+    # sets the geometry of toplevel
+    newWindow.geometry("200x200")
+
+    # A Label widget to show in toplevel
+    tk.Label(newWindow,
+             text="Enter Tasklists").pack()
+
+    tasklist_name = tk.StringVar()
+    tasklist = tk.Entry(newWindow, width=35, textvariable=tasklist_name).pack()
+
+    def create_tasklist():
+        name = tasklist_name.get()
+        global tasklists
+        tasklists.append(TaskList(name))
+        messagebox.showinfo("Success!", f"Created  {name}")
+
+
+    button = tk.Button(newWindow,
+        text="Create your list",
+        width=20,
+        height=2,
+        bg="red",
+        fg="white",
+        command = create_tasklist
+    )
+    button.pack()
+
+
 
 
 button = tk.Button(
@@ -17,17 +53,22 @@ button = tk.Button(
     height=2,
     bg="red",
     fg="white",
-    command = display_weather
+   command = openNewWindow
 )
 button.pack()
 
+def check_tasklists():
+    global tasklists
+    tasklists_str = ", ".join([tl.get_name() for tl in tasklists])
+    messagebox.showinfo("Tasklists",tasklists_str)
+
 button = tk.Button(
-    text="Check your list",
+    text="Check your lists",
     width=20,
     height=2,
     bg="red",
     fg="white",
-    #command = Action.tasklists.append(new_list)
+    command = check_tasklists
 )
 button.pack()
 
