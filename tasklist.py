@@ -23,14 +23,12 @@ class TaskList:
 
 
 class Task:
-    def __init__(self, task_name, deadline, note, date):
-        self.note = note
-        self.deadline = deadline
+    def __init__(self, task_name):
         self.task_name = task_name
-        self.date = date
+
 
     def __str__(self):
-        return f"Task name: {self.task_name}\n Date: {self.date}\n Deadline: {self.deadline}\n Note: {self.note}"
+        return f"Task name: {self.task_name}"
 
 
 

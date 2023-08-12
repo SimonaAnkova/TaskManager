@@ -33,10 +33,7 @@ class Action:
             if add_task > len(tasklists) - 1:
                 print("Sorry this tasklist does not exist!")
             new_task = Task(
-                task_name=input("Please enter task-name: "),
-                deadline=input("Enter deadline dd-hh-mm: "),
-                date=datetime.datetime.now().date(),
-                note=input("Enter note: ")
+                task_name=input("Please enter task-name: ")
             )
             tasklists[add_task].add_task(new_task)
 
